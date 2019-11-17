@@ -1,0 +1,27 @@
+{
+  "name": "kr222if-ym222bs-2dv515-assignment2",
+  "version": "1.0.0",
+  "description": "2dv515 Web Intelligence",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix ../client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "git": "git add . && git commit -m",
+    "postgit": "git push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ym222bs/kr222if-ym222bs-2dv515-assignment2.git"
+  },
+  "author": "yasmin mushahdi och mosa kasem",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ym222bs/kr222if-ym222bs-2dv515-assignment2/issues"
+  },
+  "homepage": "https://github.com/ym222bs/kr222if-ym222bs-2dv515-assignment2#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
