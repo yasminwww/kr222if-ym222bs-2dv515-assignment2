@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server",
+    "test": "node txtToJSON.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix ../client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
@@ -22,6 +23,9 @@
   },
   "homepage": "https://github.com/ym222bs/kr222if-ym222bs-2dv515-assignment2#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "file-system": "^2.2.2",
+    "fs": "0.0.1-security",
+    "util": "^0.12.1"
   }
 }

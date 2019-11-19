@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const fs = require('fs')
+
 
 const app = express()
 
@@ -15,8 +15,6 @@ app.get('/', (req, res) => {
 
 
 // app.use('/', require('./routes/ratings'))
-
-
 
 
 app.listen(PORT, () => { console.log('Server is running on: ' + PORT) })
