@@ -29,11 +29,8 @@ getData(file, 'utf8')
     return blogsArr.filter(rows => rows.occurences.length !== 0)
   }).then(result => {
     fs.writeFile('datablog.json', JSON.stringify(result), 'utf8', (err) => {
-      if (err) {
-        console.log('err: ', err)
-      } else {
-        console.log('Success')
-      }
+      if (err) console.error(err) // incase of an error, print it
+      console.log('Success')
     })
   })
   .catch(error => console.log('Error: ', error))
