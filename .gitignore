@@ -97,3 +97,6 @@ public/
 .dynamodb/
 
 # End of https://www.gitignore.io/api/node
+
+# Ignore json
+server/datablog.json
