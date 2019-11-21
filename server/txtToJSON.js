@@ -10,15 +10,24 @@ const getData = (fileName, type) =>
 
 getData(file, 'utf8')
   .then(data => {
-
+    const blogsArr = []
     const cells = data.split('\n') // split by linebreak
-    .map(el => {
-        if (el === 'Blog') {
-            console.log("blog found")
-        }
-        return el.split()   // DO SOMETHING HERE
-    })
-    //console.log(cells)
+    
+      .map((el) => {
+        return el.split('\t')
+        // console.log('el: ', el);
+        // el.split() // DO SOMETHING HERE
+      }).map((line, i) => {
+        const blogName = line[0].replace(/[^A-Za-z]/g, '')
+        blogsArr.push({ blogName: blogName, occurences: line.filter((number) => Number(number) === isNaN()) })
+
+        return line
+      })
+      // console.log('blogsArr: ', blogsArr)
+      blogsArr.forEach(element => {
+        console.log('element: ', element);
+      });
+    
     // const headings = cells.shift()
     // console.log(headings)
     // for(let values of cells) {
@@ -36,10 +45,8 @@ getData(file, 'utf8')
     //     return obj
     //   })
     //   let json = fs.writeFileSync('jsons.json', JSON.stringify(array,  null, '\t'))
-     
+
     //   console.log('Data: ', array)
     // console.log(headings)
-    console.log(cells)
-    })
+  })
   .catch(error => console.log('Error: ', error))
-
