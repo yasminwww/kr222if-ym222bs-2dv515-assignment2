@@ -30,7 +30,7 @@ getData(file, 'utf8')
   }).then(result => {
     fs.writeFile('datablog.json', JSON.stringify(result), 'utf8', (err) => {
       if (err) console.error(err) // incase of an error, print it
-      console.log('Success')
+      console.log('Successfuly created a JSON file out of the .txt')
     })
   })
   .catch(error => console.log('Error: ', error))
