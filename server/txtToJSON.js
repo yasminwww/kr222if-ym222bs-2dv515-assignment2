@@ -11,8 +11,7 @@ const getData = (fileName, type) =>
 getData(file, 'utf8')
   .then(data => {
     const blogsArr = []
-    const blogsObj = {}
-    const cells = data.split('\n')
+    data.split('\n')
       .map((el) => {
         return el.split('\t')
       }).map((line, i) => {
@@ -27,6 +26,8 @@ getData(file, 'utf8')
         })
         return line
       })
-      console.log(blogsArr[1])
+      return blogsArr.filter(rows => rows.occurences.length !== 0)
+  }).then(result => {
+    console.log(result[0])
   })
   .catch(error => console.log('Error: ', error))
