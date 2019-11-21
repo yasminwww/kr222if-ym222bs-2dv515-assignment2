@@ -11,23 +11,28 @@ const getData = (fileName, type) =>
 getData(file, 'utf8')
   .then(data => {
     const blogsArr = []
+    const blogsObj = {}
     const cells = data.split('\n') // split by linebreak
-    
+
       .map((el) => {
         return el.split('\t')
         // console.log('el: ', el);
         // el.split() // DO SOMETHING HERE
       }).map((line, i) => {
         const blogName = line[0].replace(/[^A-Za-z]/g, '')
-        blogsArr.push({ blogName: blogName, occurences: line.filter((number) => Number(number) === isNaN()) })
-
+        blogsArr.push({
+          blogName: blogName,
+          occurences: line.filter((number) => {
+            if (Number(number)) {
+              return number
+            }
+          })
+        })
         return line
       })
-      // console.log('blogsArr: ', blogsArr)
-      blogsArr.forEach(element => {
-        console.log('element: ', element);
-      });
-    
+      console.log(blogsArr[1])
+    // console.log('blogsArr: ', blogsArr)
+
     // const headings = cells.shift()
     // console.log(headings)
     // for(let values of cells) {
