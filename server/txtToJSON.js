@@ -16,13 +16,15 @@ getData(file, 'utf8')
         return el.split('\t')
       }).map((line, i) => {
         const blogName = line[0].replace(/[^A-Za-z]/g, '')
+        console.log(blogName)
+        // const toNumber = 
         blogsArr.push({
           blogName: blogName,
           occurences: line.filter((number) => {
             if (Number(number)) {
               return number
             }
-          })
+          }).map(Number)
         })
         return line
       })
