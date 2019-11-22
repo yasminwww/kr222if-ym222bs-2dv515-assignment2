@@ -28,7 +28,7 @@ getData(file, 'utf8')
       })
     return blogsArr.filter(rows => rows.occurences.length !== 0)
   }).then(result => {
-    fs.writeFile('datablog.json', JSON.stringify(result), 'utf8', (err) => {
+    fs.writeFile('datablog.json', JSON.stringify(result, null, 4), 'utf8', (err) => {
       if (err) console.error(err) // incase of an error, print it
       console.log('Successfuly created a JSON file out of the .txt')
     })
