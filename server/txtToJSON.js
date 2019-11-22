@@ -22,7 +22,7 @@ getData(file, 'utf8')
             if (Number(number)) {
               return number
             }
-          })
+          }).map(Number)
         })
         return line
       })
