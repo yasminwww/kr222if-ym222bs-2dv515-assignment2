@@ -15,7 +15,6 @@ const getCorrelation = (index) => {
         
         correlationResult.push({blogName: currentBlog.blogName, occurences: currentBlog.occurences , correlation: result})
     }
-    // console.log('correlationResult: ', correlationResult);
     return correlationResult
 }
 
@@ -23,9 +22,11 @@ const getCorrelation = (index) => {
 // Nästa steg: 
 const merging = () => {
     let arrayOfClusters = []
+
     for (let i = 0; i < blogs.length; i++) {
-        getCorr
-        
+        const result = getCorrelation(i);
+        // 
+        console.log('result: ', result);
     }
     const res = getCorrelation()
     
@@ -35,13 +36,4 @@ merging()
 
 
 module.exports.getCorrelation = getCorrelation
-n = getCorrelation
-n = getCorrelation
-n = getCorrelation
-n = getCorrelation
-n = getCorrelation
-n = getCorrelation
-n = getCorrelation
-n = getCorrelation
-n = getCorrelation
-n = getCorrelation
+

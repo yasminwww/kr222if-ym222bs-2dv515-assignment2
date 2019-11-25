@@ -16,19 +16,19 @@ getData(file, 'utf8')
         return el.split('\t')
       }).map((line, i) => {
         const blogName = line[0].replace(/[^A-Za-z]/g, '')
-        console.log(blogName)
         // const toNumber = 
         blogsArr.push({
           blogName: blogName,
           occurences: line.filter((number) => {
-            if (Number(number)) {
+            if (!isNaN(Number(number))) {
               return number
             }
           }).map(Number)
         })
         return line
       })
-    return blogsArr.filter(rows => rows.occurences.length !== 0)
+      return blogsArr.filter(rows => rows.occurences.length !== 0)
+      // return blogsArr
   }).then(result => {
     fs.writeFile('datablog.json', JSON.stringify(result, null, 4), 'utf8', (err) => {
       if (err) console.error(err) // incase of an error, print it
