@@ -24,8 +24,8 @@ const getCorrelation = (index) => {
 const merging = () => {
     let arrayOfClusters = []
     for (let i = 0; i < blogs.length; i++) {
-        getCorr
-        
+        const result = getCorrelation(i);
+        console.log(result)
     }
     const res = getCorrelation()
     
@@ -35,13 +35,4 @@ merging()
 
 
 module.exports.getCorrelation = getCorrelation
-n = getCorrelation
-n = getCorrelation
-n = getCorrelation
-n = getCorrelation
-n = getCorrelation
-n = getCorrelation
-n = getCorrelation
-n = getCorrelation
-n = getCorrelation
-n = getCorrelation
+
