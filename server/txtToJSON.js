@@ -23,9 +23,6 @@ getData(file, 'utf8')
             if (!isNaN(Number(number))) {
               return number
             }
-            // if (Number(number)) {
-            //   return number
-            // }
           }).map(Number)
         })
         return line
