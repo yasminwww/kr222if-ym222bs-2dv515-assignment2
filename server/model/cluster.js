@@ -12,4 +12,16 @@ class Cluster {
     getRight() {
         return this.right
     }
+    getParent() {
+        return this.parent
+    }
+    getRight() {
+        return this.right
+    }
+    getDistance() {
+        return this.distance
+    }
+    getBlog() {
+        return this.blog
+    }
 }
