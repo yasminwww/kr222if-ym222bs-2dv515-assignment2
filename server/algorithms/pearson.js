@@ -51,7 +51,7 @@ const merge = (clusterA, clusterB, distance) => {
 
     // Use A "BLOG" here
     let nB = new Blog()
-    for(let i = 0; i < n; i++) {
+    for(let i = 0; i < n; i++) { 
         // TODO: change blog entries
         let cntA = getBlogWordCount(0)[i]
         let cntB = getBlogWordCount(1)[i]
