@@ -3,7 +3,7 @@ const blogs = require('../datablog.json') /* eslint-disable */
 // console.log(blogs[0].occurences.length)
 const getLength = () => blogs[0].occurences.length
 const getBlogWordCount = (index) => blogs[index].occurences
-const getBlogObject = (index) => blogs[index] 
+const getBlogObject = (index) => blogs[index]
 
 const pearson = (blogA, blogB) => {
     let sumA = 0
@@ -12,6 +12,7 @@ const pearson = (blogA, blogB) => {
     let sumBsq = 0
     let pSum = 0
     let n = getLength()
+    let inCommon = 0
 
     for(let i = 0; i < getLength(); i++) {
         let cntA = blogA[i]
@@ -21,12 +22,17 @@ const pearson = (blogA, blogB) => {
         sumAsq += cntA** 2
         sumBsq += cntB** 2
         pSum += cntA * cntB
+        inCommon += 1
     }
-
+    if (inCommon === 0) {
+        return 0
+    }
         let num = pSum - (sumA*sumB / n)
         let dem = Math.sqrt((sumAsq - sumA**2 / n) * (sumBsq - sumB**2 / n))
         let result = 1 - num/dem
-        console.log('Result from pearson algorithm: ',result)
+        if (!Number(result)) {
+            return 0
+        }
         return result
 }
 
@@ -71,10 +77,14 @@ const merge = (clusterA, clusterB, distance) => {
 const getRandomRoot = () => {
 let oneRandomBlogObject = blogs[Math.floor(Math.random()*blogs.length)]
 // Or simply return the random array
-// return oneRandomBlogObject.occurrences
-return blogs.indexOf(oneRandomBlogObject)
+return oneRandomBlogObject
+// return blogs.indexOf(oneRandomBlogObject)
 }
 
-getRandomRoot()
 
-
+module.exports.getRandomRoot = getRandomRoot
+module.exports.merge = merge
+module.exports.pearson = pearson
+module.exports.getBlogObject = getBlogObject
+module.exports.getBlogWordCount = getBlogWordCount
+module.exports.getLength = getLength
