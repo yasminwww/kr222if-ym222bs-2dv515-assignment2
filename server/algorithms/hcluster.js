@@ -4,7 +4,8 @@ const Cluster = require('../model/cluster')
 
 
 const getCorrelation = (index) => {
-    const rootBlog = blogs[index]
+    const rootBlog = blogs[0]
+    console.log('rootBlog: ', rootBlog.occurences.length);
     const correlationResult = [{rootBlogName: rootBlog.blogName, occurences: rootBlog.occurences}]
 
     const filteredList = blogs.filter(e => e.blogName !== rootBlog.blogName)
@@ -15,7 +16,6 @@ const getCorrelation = (index) => {
         
         correlationResult.push({blogName: currentBlog.blogName, occurences: currentBlog.occurences , correlation: result})
     }
-    // console.log('correlationResult: ', correlationResult);
     return correlationResult
 }
 
@@ -25,7 +25,6 @@ const merging = () => {
     let arrayOfClusters = []
     for (let i = 0; i < blogs.length; i++) {
         const result = getCorrelation(i);
-        console.log(result)
     }
     const res = getCorrelation()
     
