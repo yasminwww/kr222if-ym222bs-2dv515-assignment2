@@ -1,28 +1,47 @@
 const blogs = require('../datablog.json')
 const {getRandomRoot, pearson} = require('./pearson')
+const Cluster = require('../model/cluster')
 
 
-const getCorrelation = () => {
-    const randomRoot = getRandomRoot()
-    const correlationResult = [{currentBlog: randomRoot.blogName}]
+const getCorrelation = (index) => {
+    const rootBlog = blogs[index]
+    const correlationResult = [{rootBlogName: rootBlog.blogName, occurences: rootBlog.occurences}]
 
-    const filteredList = blogs.filter(e => e.blogName !== randomRoot.blogName)
+    const filteredList = blogs.filter(e => e.blogName !== rootBlog.blogName)
 
     for (let i = 0; i < filteredList.length; i++) {
         const currentBlog = filteredList[i];
-        const result = pearson(randomRoot.occurences, currentBlog.occurences)
+        const result = pearson(rootBlog.occurences, currentBlog.occurences)
         
-        correlationResult.push({blogName: currentBlog.blogName, correlation: result})
+        correlationResult.push({blogName: currentBlog.blogName, occurences: currentBlog.occurences , correlation: result})
     }
-    // console.log('correlationResult: ', correlationResult)
+    // console.log('correlationResult: ', correlationResult);
     return correlationResult
 }
-getCorrelation()
 
 
 // Nästa steg: 
-const z
+const merging = () => {
+    let arrayOfClusters = []
+    for (let i = 0; i < blogs.length; i++) {
+        getCorr
+        
+    }
+    const res = getCorrelation()
+    
+
+}
+merging()
 
 
-
-module.exports.initialize = initialize
+module.exports.getCorrelation = getCorrelation
+n = getCorrelation
+n = getCorrelation
+n = getCorrelation
+n = getCorrelation
+n = getCorrelation
+n = getCorrelation
+n = getCorrelation
+n = getCorrelation
+n = getCorrelation
+n = getCorrelation
