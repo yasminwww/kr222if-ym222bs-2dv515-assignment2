@@ -54,6 +54,7 @@ const arrayOfClusters = () => {
             }))
         }
         console.log(clusterArray)
+        
     
         // while (clusterArray.length > 0) {
         //     let pair = [0, 1]
