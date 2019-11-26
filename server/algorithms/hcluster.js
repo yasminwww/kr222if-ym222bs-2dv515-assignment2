@@ -16,6 +16,7 @@ const getCorrelation = (index) => {
         correlationResult.push({blogName: currentBlog.blogName, occurences: currentBlog.occurences , correlation: result})
     }
     return correlationResult
+    
 }
 
 
