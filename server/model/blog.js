@@ -9,3 +9,5 @@ class Blog {
         this.wordsCount = count
     }
 }
+
+module.exports.Blog = Blog

@@ -111,8 +111,6 @@ const hierchyBuilder = () => {
     }
 }
 
-hierchyBuilder()
-
 module.exports.clusterifyBlogs = clusterifyBlogs
 module.exports.hierchyBuilder = hierchyBuilder
 
