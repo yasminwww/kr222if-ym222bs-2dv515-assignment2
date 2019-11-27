@@ -8,7 +8,7 @@
     "test": "node pearson.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix ../client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "concurrently \"npm run server\"",
     "git": "git add . && git commit -m",
     "postgit": "git push"
   },
