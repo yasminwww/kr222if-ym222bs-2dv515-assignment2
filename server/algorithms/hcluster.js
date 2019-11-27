@@ -111,13 +111,8 @@ const hierchyBuilder = () => {
     }
 }
 
-
 hierchyBuilder()
 
-const findClosest = async () => {
-    const result = hierchyBuilder()
-}
-
-
-module.exports.getCorrelation = clusterifyBlogs
+module.exports.clusterifyBlogs = clusterifyBlogs
+module.exports.hierchyBuilder = hierchyBuilder
 
