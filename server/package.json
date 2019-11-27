@@ -7,8 +7,6 @@
     "start": "node server",
     "test": "node pearson.js",
     "server": "nodemon server.js",
-    "client": "npm start --prefix ../client",
-    "dev": "concurrently \"npm run server\"",
     "git": "git add . && git commit -m",
     "postgit": "git push"
   },
@@ -27,5 +25,8 @@
     "file-system": "^2.2.2",
     "fs": "0.0.1-security",
     "util": "^0.12.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.1"
   }
 }
