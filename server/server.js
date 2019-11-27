@@ -12,12 +12,12 @@ app.get('/', (req, res) => {
 
 })
 
-app.get('/hierchyclustering', (req, res) => {
+app.get('/hierarchy', (req, res) => {
     try {
         const result = hierchy.hierchyBuilder()
         res.json(result) 
     } catch (error) {
-        
+
     }
 })
 
