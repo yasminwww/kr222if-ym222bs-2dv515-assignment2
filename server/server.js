@@ -17,7 +17,7 @@ app.get('/hierchyclustering', (req, res) => {
         const result = hierchy.hierchyBuilder()
         res.json(result) 
     } catch (error) {
-
+        
     }
 })
 
