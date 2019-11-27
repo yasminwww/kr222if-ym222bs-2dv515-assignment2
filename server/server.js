@@ -1,14 +1,16 @@
 const express = require('express') /* eslint-disable */
 const bodyParser = require('body-parser')
+const path = require('path')
 
 const app = express()
 
 const PORT = process.env.PORT || 8000
 
 app.use(bodyParser.json())
+app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-    res.send('We are on the web!')
+
 })
 
 // app.use('/', require('./routes/ratings'))

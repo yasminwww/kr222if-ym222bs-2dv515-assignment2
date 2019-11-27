@@ -3,6 +3,9 @@ const { getRandomRoot, pearson } = require('./pearson')
 const Cluster = require('../model/Cluster')
 const Blog = require('../model/blog')
 
+
+
+
 /**
  * 
  * @param {number} index, array contains other arrays, every array holds (blog name) and (word occurences)
@@ -49,7 +52,7 @@ const mergeNodes = (clusterA, clusterB) => {
             mergdata.push((clusterA[i] + clusterB[i]) / 2.0);
         }
         return mergdata;
-    }
+}
 
 
 
@@ -108,7 +111,10 @@ const hierchyBuilder = () => {
         console.error(err)
     }
 }
+
+
 hierchyBuilder()
+
 const findClosest = async () => {
     const result = hierchyBuilder()
 }
