@@ -5,7 +5,6 @@ const Blog = require('../model/blog')
 
 
 
-
 /**
  * 
  * @param {number} index, array contains other arrays, every array holds (blog name) and (word occurences)
