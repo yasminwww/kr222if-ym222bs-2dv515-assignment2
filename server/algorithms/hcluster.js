@@ -41,10 +41,11 @@ const clusterifyBlogs = (index) => {
     }
 }
 
-
-
-
-
+/**
+ * merging two clusters
+ * @param {blog} clusterA 
+ * @param {blog} clusterB 
+ */
 const mergeNodes = (clusterA, clusterB) => {
         let mergdata = []
         for (let i = 0; i < clusterA.length; i++) {
@@ -53,15 +54,17 @@ const mergeNodes = (clusterA, clusterB) => {
         return mergdata;
 }
 
-
-
-
 // CODE FROM THE BOOK
+/**
+ * Builds a hierechal tree of clusters
+ */
 const hierchyBuilder = () => {
     try {
         let clusterArray = []
         let currentClustID = -1
-
+        /**
+         * Clusterify blogs
+         */
         for (let i = 0; i < blogs.length; i++) {
             clusterArray.push(new Cluster({
                 blog:blogs[i].blogName,
