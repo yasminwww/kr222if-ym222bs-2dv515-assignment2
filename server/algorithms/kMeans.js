@@ -3,24 +3,30 @@ const Blog = require('../model/blog')
 const pearson = require('./pearson')
 const Centroid = require('../model/centroid.js')
 
-const kMeansClustering = (iterate) => {
+const kMeansClustering = (k) => {
     const centroids = []
+    const wordCount = []
     // let ranges
-    for (let i = 0; i < iterate; i++) {
+    for (let c = 0; c < k; c++) {
         let aCentroid = new Centroid()
         for (let i = 0; i < pearson.getLength(); i++) {
-            let min = Math.min(...blogs[i])
-            console.log('min: ', min);
-            // let range = wordRange(i)
+            let range = wordRange(i)
+            centroids.push(Math.floor( Math.random() * (wordRange(i).max - wordRange(i).min + 1)) + wordRange(i).min)
+            aCentroid.assignyWordCount(i, Math.floor( Math.random() * (wordRange(i).max - wordRange(i).min + 1)) + wordRange(i).min)
         }
     }
+    console.log(centroids.length)
 }
 
 const wordRange = (index) => {
     const range = []
     for (let i = 0; i < blogs.length; i++) {
-        const value = blogs[i].occurences[index]
-        // const 
+        range.push(blogs[i].occurences[index])
     }
+    const reducer = (accumulator, currentValue) => ({
+        min: Math.min(accumulator.min, currentValue),
+        max: Math.max(accumulator.max, currentValue)
+    })
+    return range.reduce(reducer, { min: Infinity, max: -Infinity })
 }
-kMeansClustering(4)
+kMeansClustering(1)
