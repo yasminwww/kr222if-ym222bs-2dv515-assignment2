@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Kmean from './components/Kmean.js'
 import Hierarchy from './components/Hierarchy.js'
 import Links from './components/Links.js'
+import RenderTree from './components/RenderTree'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path='/hierarchy' exact component={Hierarchy} />
         </Switch>
         <Links />
+        <RenderTree />
       </BrowserRouter>
     </div>
   )

@@ -54,3 +54,6 @@ const wordRange = (index) => {
     })
     return range.reduce(reducer, { min: Infinity, max: -Infinity })
 }
+
+
+module.exports.kMeansClustering = kMeansClustering
