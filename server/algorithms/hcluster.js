@@ -113,7 +113,7 @@ const hierchyBuilder = () => {
         console.error(err)
     }
 }
-
+hierchyBuilder()
 module.exports.clusterifyBlogs = clusterifyBlogs
 module.exports.hierchyBuilder = hierchyBuilder
 
