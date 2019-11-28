@@ -14,7 +14,9 @@ class Centroid {
     updateifyCounter(index, averge) {
         this.wordCount[index] = averge
     }
-    assignyWordCount(index, max, min)
+    assignyWordCount(index, max, min) {
+        
+    }
 }
 
-module.exports.Centroid = Centroid
+module.exports = Centroid
