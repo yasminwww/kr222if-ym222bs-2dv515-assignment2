@@ -23,9 +23,19 @@ const getCorrelation = (index) => {
 // Nästa steg: 
 const merging = () => {
     let arrayOfClusters = []
+    let cnt = 0
     for (let i = 0; i < blogs.length; i++) {
-        getCorr
+        for(let j = 0; j < blogs.length; j++){
+            console.log(blogs[j].occurences)
+            // Check to not loop the same twice
+            let cntA = blogs[i].occurences
+            let cntB = blogs[j].occurences
+            cnt = (cntA + cntB) / 2
+            // arrayOfClusters.push({cnt: cnt, blogname: blogs[i].blogName, blogname2: blogs[j].blogName})
+        }
         
+        // console.log(cnt)
+        // console.log(arrayOfClusters)
     }
     const res = getCorrelation()
     
