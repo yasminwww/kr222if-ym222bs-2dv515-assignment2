@@ -1,48 +1,28 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import $ from 'jquery'
-import jstree from 'jstree'
-import TreeView from 'react-easy-jstree';
 
 const RenderTree = () => {
-    const [jsdata, setJsData] = useState({
-        data: {
-            core: {
-                data: {
-                    centroids: []
-                }
-            }
-        },
-        selected: [],
-    })
-    const handleClick = async () => {
-        const newData = await axios.get('/kmeans')
-        setJsData({
-          data: {
-            core: {
-              data: [
-                {
-                  text: newData.data
-                }
-              ]
-            }
-          }
-        });
-      }
+    const [data, setData] = useState(null)
 
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('/kmeans')
+            console.log(response.data)
+            setData(response.data)
+        } catch(err) {
+            console.log(err)
+        }
+    }
 
     return (
-        <div className="jstree">
-            <ul>
-                <li> Root node 1
-                    <ul>
-                    <li className="child_node_1">Child node 1</li>
-                    <li>Child node 2</li>
-                    </ul>
-                </li>
-                <li>Root node 2</li>
-            </ul>
-            <button onClick={() => handleClick()}>Hello</button>
+        <div className='jstree'>
+        { data &&
+                    data.map( (data, i) => (
+                        <li key={`${data.name} ${i}`}>
+                        </li>
+                    ))
+        }
+        <button type="button" className=" p-3 ml-0 btn btn-warning" onClick={() => fetchData()}>demo button</button>
         </div>
     )
 }
