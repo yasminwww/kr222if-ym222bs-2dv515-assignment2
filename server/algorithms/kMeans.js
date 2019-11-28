@@ -5,7 +5,6 @@ const Centroid = require('../model/centroid.js')
 
 const kMeansClustering = (k) => {
     const centroids = []
-    const wordCount = []
     // let ranges
     for (let c = 0; c < k; c++) {
         let aCentroid = new Centroid()
@@ -42,6 +41,7 @@ const kMeansClustering = (k) => {
             }
         })
     }
+    return centroids
 }
 
 const wordRange = (index) => {
