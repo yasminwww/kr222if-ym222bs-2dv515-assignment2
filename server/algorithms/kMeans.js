@@ -11,11 +11,37 @@ const kMeansClustering = (k) => {
         let aCentroid = new Centroid()
         for (let i = 0; i < pearson.getLength(); i++) {
             let range = wordRange(i)
-            centroids.push(Math.floor( Math.random() * (wordRange(i).max - wordRange(i).min + 1)) + wordRange(i).min)
-            aCentroid.assignyWordCount(i, Math.floor( Math.random() * (wordRange(i).max - wordRange(i).min + 1)) + wordRange(i).min)
+            aCentroid.assignyWordCount(i, Math.floor( Math.random() * (range.max - range.min + 1)) + range.min)
         }
+        centroids.push(aCentroid)
     }
-    console.log(centroids.length)
+    for (let i = 0; i < 20; i++) {
+        centroids.forEach(c => {
+           c.clearAssigny() 
+        })
+        blogs.forEach(blog => {
+            let distance = Number.MAX_VALUE
+            let best
+            centroids.forEach(c => {
+                const cDist = pearson.pearson(c.wordCount, blog.occurences)
+                if (cDist < distance) {
+                    best = c
+                    distance = cDist
+                }
+            })
+            best.assignifyBlog(blog)
+        })
+        centroids.forEach(centroid => {
+            for (let i = 0; i < pearson.getLength(); i++) {
+                let avg = 0
+                centroid.assignments.forEach(b => {
+                    avg += b.occurences[i]
+                    avg /= centroid.assignments.length
+                    centroid.updateifyCounter(i, avg)
+                })
+            }
+        })
+    }
 }
 
 const wordRange = (index) => {
