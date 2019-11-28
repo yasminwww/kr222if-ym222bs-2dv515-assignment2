@@ -1,6 +1,7 @@
 const express = require('express') /* eslint-disable */
 const bodyParser = require('body-parser')
 const hierchy = require('./algorithms/hcluster')
+const kMeans = require('./algorithms/kMeans')
 
 const app = express()
 
@@ -12,12 +13,21 @@ app.get('/', (req, res) => {
 
 })
 
+app.get('/kmeans', (req, res) => {
+    try {
+        const result = kMeans(5)
+        res.json(result)
+    } catch (error) {
+        console.log('error: ', error);
+    }
+})
+
 app.get('/hierarchy', (req, res) => {
     try {
         const result = hierchy.hierchyBuilder()
         res.json(result) 
     } catch (error) {
-
+        console.log('error: ', error);
     }
 })
 

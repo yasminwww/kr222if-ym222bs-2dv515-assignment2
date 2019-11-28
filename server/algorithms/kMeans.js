@@ -19,7 +19,7 @@ const kMeansClustering = (k) => {
         })
         blogs.forEach(blog => {
             let distance = Number.MAX_VALUE
-            let best
+            let best = new Centroid()
             centroids.forEach(c => {
                 const cDist = pearson.pearson(c.wordCount, blog.occurences)
                 if (cDist < distance) {
@@ -54,3 +54,5 @@ const wordRange = (index) => {
     })
     return range.reduce(reducer, { min: Infinity, max: -Infinity })
 }
+
+module.exports = kMeansClustering
