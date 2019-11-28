@@ -1,5 +1,4 @@
 const blogs = require('../datablog.json')
-const Blog = require('../model/blog')
 const pearson = require('./pearson')
 const Centroid = require('../model/centroid.js')
 
@@ -55,4 +54,3 @@ const wordRange = (index) => {
     })
     return range.reduce(reducer, { min: Infinity, max: -Infinity })
 }
-kMeansClustering(1)
