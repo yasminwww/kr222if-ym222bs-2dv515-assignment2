@@ -7,7 +7,7 @@ import RenderTree from './components/RenderTree'
 
 function App() {
   return (
-    <div className="App">
+    <div className='container'>
       <BrowserRouter>
         <Switch>
           <Route path='/kmeans' exact component={Kmean} />

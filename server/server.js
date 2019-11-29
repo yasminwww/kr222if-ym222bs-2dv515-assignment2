@@ -1,7 +1,7 @@
 const express = require('express') /* eslint-disable */
 const bodyParser = require('body-parser')
 const hierchy = require('./algorithms/hcluster')
-const kmeans = require('./algorithms/kMeans')
+const kMeans = require('./algorithms/kMeans')
 
 const app = express()
 
@@ -12,19 +12,12 @@ app.use(bodyParser.json())
 app.get('/', (req, res) => {
 
 })
-app.get('/kmeans', (req, res) => {
+
+app.get('/kmeans/:clusters', (req, res) => {
     try {
-        const result = kmeans.kMeansClustering(5)
-        res.json(result) 
-    } catch (error) {
-
-    }
-})
-
-
-app.get('/kmeans', (req, res) => {
-    try {
-        const result = kMeans(5)
+        const userCluster = Number(req.params.clusters)
+        console.log('userCluster: ', userCluster);
+        const result = kMeans(userCluster)
         res.json(result)
     } catch (error) {
         console.log('error: ', error);

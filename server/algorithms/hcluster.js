@@ -62,10 +62,12 @@ const hierchyBuilder = () => {
     try {
         let clusterArray = []
         let currentClustID = -1
+        let blogsNames = []
         /**
          * Clusterify blogs
          */
         for (let i = 0; i < blogs.length; i++) {
+            blogsNames.push(blogs[i].blogName)
             clusterArray.push(new Cluster({
                 blog:blogs[i].blogName,
                 vec: blogs[i].occurences,
@@ -97,9 +99,13 @@ const hierchyBuilder = () => {
 		let mergevec = mergeNodes(clusterArray[pair[0]].vec,clusterArray[pair[1]].vec)
 
 
-		let newcluster = new Cluster({vec:mergevec,left:clusterArray[pair[0]],
-										right:clusterArray[pair[1]],
-										distance:closest,id:currentClustID})
+        let newcluster = new Cluster({
+            vec:mergevec,
+            left:clusterArray[pair[0]],
+            right:clusterArray[pair[1]],
+            distance:closest,
+            id:currentClustID
+        })
 		
 		currentClustID -= 1;
 		
@@ -107,8 +113,7 @@ const hierchyBuilder = () => {
 		clusterArray.splice(pair[0],1)
 		clusterArray.push(newcluster)
         }
-
-        return clusterArray[0]
+        return [clusterArray[0], blogsNames]
     } catch (err) {
         console.error(err)
     }

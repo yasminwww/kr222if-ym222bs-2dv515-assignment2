@@ -2,9 +2,13 @@ const blogs = require('../datablog.json')
 const pearson = require('./pearson')
 const Centroid = require('../model/centroid.js')
 
-const kMeansClustering = (k) => {
+const kMeansClustering = (k, userChoice) => {
     const centroids = []
-    // let ranges
+    userChoice = 2
+    userChoice = '' ? userChoice = Number.MAX_VALUE : userChoice
+    console.log('userChoice: ', userChoice);
+    
+
     for (let c = 0; c < k; c++) {
         let aCentroid = new Centroid()
         for (let i = 0; i < pearson.getLength(); i++) {
@@ -13,10 +17,11 @@ const kMeansClustering = (k) => {
         }
         centroids.push(aCentroid)
     }
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < userChoice; i++) {
         centroids.forEach(c => {
            c.clearAssigny() 
         })
+
         blogs.forEach(blog => {
             let distance = Number.MAX_VALUE
             let best = new Centroid()
@@ -39,8 +44,18 @@ const kMeansClustering = (k) => {
                 })
             }
         })
+
+        compairCurrentAndPrevoius(centroids)
     }
     return centroids
+}
+
+const compairCurrentAndPrevoius = (centroids) => {
+    console.log(centroids[0].assignments)
+    // let a = centroid.assignmentss
+    // let b = 
+
+    // return a.equals(b)
 }
 
 const wordRange = (index) => {
@@ -56,4 +71,4 @@ const wordRange = (index) => {
 }
 
 
-module.exports.kMeansClustering = kMeansClustering
+module.exports = kMeansClustering

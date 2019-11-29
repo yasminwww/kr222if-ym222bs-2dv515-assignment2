@@ -1,63 +1,79 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import axios from 'axios'
 
 const RenderTree = () => {
     const [data, setData] = useState(null)
+    const [clusters, setClusters] = useState('')
 
-    const fetchData = async () => {
+    const chosenClusterCount = (e) => {
+        console.log(e.target.value)
+        setClusters(e.target.value)
+    }
+
+    const fetchData = async (e) => {
+        e.preventDefault()
         try {
-            const response = await axios.get('/kmeans')
-            // console.log(response.data)
+            const response = await axios.get(`/kmeans/${clusters}`)
             kMeans(response.data)
-            // setData(response.data)
-        } catch(err) {
+        } catch (err) {
             console.log(err)
         }
     }
 
+
+    const handleEnterKey = (e) => {
+        if (e.key === 'Enter') {
+            fetchData()
+        }
+      }
+
+
     const kMeans = (clusters) => {
         const centroids = []
         clusters.map((cluster, i) => {
-            centroids.push({cluster: []})
+            centroids.push({ cluster: [] })
             cluster.assignments.map((blog) => {
                 centroids[i].cluster.push(blog)
             })
         })
         setData(centroids)
-        // data.map((data) => {
-        //     console.log(data)
-        // })
     }
-    // data.map( (clusters, i) => (
-    //     <li key={`${clusters.name} ${i}`}>
-    //         cluster {i}
-    //         {clusters && clusters.map((blogs, i) => {
-    //            <div></div>  
-    // ))
-    //     </li>
-    // ))
 
     return (
-        <div className='jstree'>
-        { data &&
-            data.map((cluster, i) => (
-                // console.log('cluster[i]: ', data[i].cluster.map((e) => (console.log(e.blogName))))
-                // console.log('cluster[i]: ', data[i].cluster[0])
-                // cluster[i]
-                <li key={`${cluster.name} ${i}`}>
-                    cluster: {i}
-                    {data[i].cluster && data[i].cluster.map((blog, index) => (
-                        <p key={`${blog.blogName} ${index}`}>{blog.blogName}</p>
+        <Fragment>
+            <form>
+                <div className='form-group'>
+                    <input type='text' onChange={chosenClusterCount} onKeyPress={handleEnterKey} className='ml-6 form-control' id='cluster' />
+                </div>
+                <button type='submit' className=' p-3 ml-0 btn-lg btn-block btn btn-warning' onClick={(e) => fetchData(e)}>FIRE!</button>
+            </form>
+                {data &&
+                    data.map((cluster, i) => (
+                        <div key={`${cluster.name} ${i}`} className='accordion' id='accordionExample'>
+                            <div className='card'>
+                                <div className='card-header' id='headingOne'>
+                                    <h2 className='mb-0'>
+                                        <button className='btn btn-link' type='button' data-toggle='collapse' data-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne'>
+                                            cluster: {i + 1}
+                                        </button>
+                                    </h2>
+                                </div>
+                                {data[i].cluster && data[i].cluster.map((blog, index) => (
+                                    <div key={`${blog.blogName} ${index}`} id='collapseOne' className='collapse' aria-labelledby='headingOne' data-parent='#accordionExample'>
+                                        <div className='card-body'>
+                                            {index + 1}: {blog.blogName}
+                                        </div>
+                                    </div>
+                                ))
+                                }
+                            </div>
+
+                        </div>
                     ))
-                    }
-                    <br></br>
-                </li>
-            ))
+                }
+        </Fragment>
+            )
         }
-        <button type="button" className=" p-3 ml-0 btn btn-warning" onClick={() => fetchData()}>demo button</button>
-        </div>
-    )
-}
-
-
-export default RenderTree
+        
+        
+        export default RenderTree
