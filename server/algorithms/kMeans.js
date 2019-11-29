@@ -2,9 +2,21 @@ const blogs = require('../datablog.json')
 const pearson = require('./pearson')
 const Centroid = require('../model/centroid.js')
 
+
+const wordRange = (index) => {
+    const range = []
+    for (let i = 0; i < blogs.length; i++) {
+        range.push(blogs[i].occurences[index])
+    }
+    const reducer = (accumulator, currentValue) => ({
+        min: Math.min(accumulator.min, currentValue),
+        max: Math.max(accumulator.max, currentValue)
+    })
+    return range.reduce(reducer, { min: Infinity, max: -Infinity })
+}
+
 const kMeansClustering = (k, userChoice) => {
     const centroids = []
-    userChoice = 2
     userChoice = '' ? userChoice = Number.MAX_VALUE : userChoice
     console.log('userChoice: ', userChoice);
     
@@ -44,31 +56,25 @@ const kMeansClustering = (k, userChoice) => {
                 })
             }
         })
-
-        compairCurrentAndPrevoius(centroids)
+        if(centroids[0].assignments.length ===  centroids[0].previous.length) {
+            centroids.map(centroid => {
+                compairCurrentAndPrevoius(centroid)
+            })
+        }
     }
     return centroids
 }
 
-const compairCurrentAndPrevoius = (centroids) => {
-    console.log(centroids[0].assignments)
-    // let a = centroid.assignmentss
-    // let b = 
-
-    // return a.equals(b)
-}
-
-const wordRange = (index) => {
-    const range = []
-    for (let i = 0; i < blogs.length; i++) {
-        range.push(blogs[i].occurences[index])
+const compairCurrentAndPrevoius = (aCentroid) => {
+    for (let i = 0; i < aCentroid.assignments.length; i++) {
+        const element = aCentroid.assignments[i].blogName;
+        console.log('element: ', element);
+        
     }
-    const reducer = (accumulator, currentValue) => ({
-        min: Math.min(accumulator.min, currentValue),
-        max: Math.max(accumulator.max, currentValue)
-    })
-    return range.reduce(reducer, { min: Infinity, max: -Infinity })
 }
+
+kMeansClustering(2, 20)
+
 
 
 module.exports = kMeansClustering
