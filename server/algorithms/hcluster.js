@@ -3,7 +3,7 @@ const { getRandomRoot, pearson } = require('./pearson')
 const Cluster = require('../model/Cluster')
 const Blog = require('../model/blog')
 
-
+let arrBlog = []
 
 /**
  * 
@@ -118,7 +118,36 @@ const hierchyBuilder = () => {
         console.error(err)
     }
 }
-hierchyBuilder()
+function v(n){
+	//function to space the output properly
+	var space =[];
+	for(var i =0;i< n;i++){
+		space.push(' ');
+	}
+	return space;
+}
+function buildTree(clust,labels,n){
+	var space = v(n).join('')
+	if(clust.id < 0){//indicate a group
+        arrBlog.push(space+'-')
+	}
+	else{
+        arrBlog.push(space+labels[clust.id]) // child
+	}
+	
+	
+	if(clust['left'] !=null){
+		buildTree(clust['left'],labels,n+1);
+		
+	}
+	if(clust['right'] !=null){
+		buildTree(clust['right'],labels,n+1);
+		
+    }
+    return arrBlog
+}
+
+module.exports.buildTree = buildTree
 module.exports.clusterifyBlogs = clusterifyBlogs
 module.exports.hierchyBuilder = hierchyBuilder
 

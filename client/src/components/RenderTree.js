@@ -53,7 +53,7 @@ const RenderTree = () => {
                             <div className='card'>
                                 <div className='card-header' id='headingOne'>
                                     <h2 className='mb-0'>
-                                        <button className='btn btn-link' type='button' data-toggle='collapse' data-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne'>
+                                        <button className='btn btn-link' type='button' data-toggle='collapse show' data-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne'>
                                             cluster: {i + 1}
                                         </button>
                                     </h2>

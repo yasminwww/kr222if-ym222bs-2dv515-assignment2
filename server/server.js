@@ -16,7 +16,6 @@ app.get('/', (req, res) => {
 app.get('/kmeans/:clusters', (req, res) => {
     try {
         const userCluster = Number(req.params.clusters)
-        console.log('userCluster: ', userCluster);
         const result = kMeans(userCluster)
         res.json(result)
     } catch (error) {
@@ -24,10 +23,11 @@ app.get('/kmeans/:clusters', (req, res) => {
     }
 })
 
-app.get('/hierarchy', (req, res) => {
+app.get('/hierarchy', async (req, res) => {
     try {
         const result = hierchy.hierchyBuilder()
-        res.json(result) 
+        const treeString = await hierchy.buildTree(result[0], result[1], 0)
+        res.json(treeString)
     } catch (error) {
         console.log('error: ', error);
     }

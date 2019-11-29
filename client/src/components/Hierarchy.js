@@ -1,38 +1,37 @@
 import React, { Fragment, useState, useEffect } from 'react'
+import uuid from 'uuid'
 import axios from 'axios'
 
 const Hierarchy = () => {
 
   const [data, setData] = useState(null)
   const [msg, setMessage] = useState(null)
+  const [treeString, setTreeString] = useState()
 
-  const getHierarchy = async () => {
+  const generateID = () => {
+    return uuid.v4() * Math.random(4)
+  }
+
+  const getHierarchy = async (e) => {
+    e.preventDefault()
     try {
       const treeObject = await axios.get(`/hierarchy`)
-      const tree = stringBuilder(tree[0], tree[1], 0)
-      console.log('tree: ', tree);
+      setTreeString(treeObject.data)
     } catch (err) {
       setData(null)
       setMessage('Something went wrong, try a number in the input field')
     }
   }
-  const v = (n) => {
-    //function to space the output properly
-    var space = [];
-    for (var i = 0; i < n; i++) {
-      space.push(' ');
-    }
-    return space;
-  }
-  const stringBuilder = (tree) => {
-
-  }
-
-  useEffect(() => {
-    getHierarchy()
-  }, [getHierarchy])
   return (
     <div>
+
+      <button type='submit' className='p-3 ml-0 btn-lg btn-block btn btn-warning' onClick={(e) => getHierarchy(e)}>Generate tree</button>
+      <pre>
+      {treeString && treeString.map((e, i) => (
+        <p key={generateID + i}>{e}</p>
+        ))
+      }
+      </pre>
 
     </div>
   )

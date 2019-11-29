@@ -18,8 +18,6 @@ const wordRange = (index) => {
 const kMeansClustering = (k, userChoice) => {
     const centroids = []
     userChoice = '' ? userChoice = Number.MAX_VALUE : userChoice
-    console.log('userChoice: ', userChoice);
-    
 
     for (let c = 0; c < k; c++) {
         let aCentroid = new Centroid()
@@ -56,20 +54,20 @@ const kMeansClustering = (k, userChoice) => {
                 })
             }
         })
-        if(centroids[0].assignments.length ===  centroids[0].previous.length) {
-            centroids.map(centroid => {
-                compairCurrentAndPrevoius(centroid)
-            })
-        }
+        // if(centroids[0].assignments.length ===  centroids[0].previous.length) {
+        //     centroids.map(centroid => {
+        //         compairCurrentAndPrevoius(centroid)
+        //     })
+        // }
     }
     return centroids
 }
 
 const compairCurrentAndPrevoius = (aCentroid) => {
     for (let i = 0; i < aCentroid.assignments.length; i++) {
-        const element = aCentroid.assignments[i].blogName;
-        console.log('element: ', element);
-        
+        const currentAss = aCentroid.assignments[i].blogName;
+        const previousAss = aCentroid.previous[i].blogName;
+
     }
 }
 

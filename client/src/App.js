@@ -14,7 +14,6 @@ function App() {
           <Route path='/hierarchy' exact component={Hierarchy} />
         </Switch>
         <Links />
-        <RenderTree />
       </BrowserRouter>
     </div>
   )
