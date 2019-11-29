@@ -21,6 +21,9 @@ app.get('/kmeans/:clusters', (req, res) => {
         res.json(result)
     } catch (error) {
         console.log('error: ', error);
+        res.status(404).send({
+            msg: error.message
+        })
     }
 })
 
@@ -29,7 +32,9 @@ app.get('/hierarchy', (req, res) => {
         const result = hierchy.hierchyBuilder()
         res.json(result) 
     } catch (error) {
-        console.log('error: ', error);
+        res.status(404).send({
+            msg: error.message
+        })
     }
 })
 
