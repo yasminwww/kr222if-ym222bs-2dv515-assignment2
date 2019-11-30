@@ -17,6 +17,9 @@ class Centroid {
     assignyWordCount(index, value) {
         this.wordCount[index] = value
     }
+    isSame(index) {
+        return this.assignments[index] === this.previous[index]
+    }
 }
 
 module.exports = Centroid
