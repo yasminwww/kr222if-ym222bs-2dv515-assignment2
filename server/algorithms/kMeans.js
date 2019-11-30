@@ -21,14 +21,10 @@ const wordRange = (index) => {
  */
 const compairCurrentAndPrevoius = (aCentroid) => {
     let itsTrue = false
-    // for (let i = 0; i < aCentroid.assignments.length; i++) {
-        aCentroid.assignments.map((e, i) => {
-            console.log('i: ', i);
-            itsTrue = aCentroid.isSame(i)
-            console.log('itsTrue: ', itsTrue);
-        })
-        console.log(itsTrue);
-    // }
+    for (let i = 0; i < aCentroid.assignments.length; i++) {
+        itsTrue = aCentroid.isSame(i)
+    }
+    return itsTrue
 }
 
 const kMeansClustering = (k, userChoice) => {
@@ -44,7 +40,7 @@ const kMeansClustering = (k, userChoice) => {
         }
         centroids.push(aCentroid)
     }
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 100; i++) {
         centroids.forEach(c => {
             c.clearAssigny() 
         })
@@ -70,21 +66,23 @@ const kMeansClustering = (k, userChoice) => {
                 })
             }
         })
-        centroids.map(centroid => {
+        const centroidsStability = centroids.map(centroid => {
             if(centroid.assignments.length === centroid.previous.length) {
-                if (compairCurrentAndPrevoius(centroid)) {
-                    console.log('yes its true')
-                    return centroids
-                }
-            }
+                return compairCurrentAndPrevoius(centroid)
+            } 
+            return false
         })
-
+        const stableAtLast = centroidsStability.every(isStable => {
+            return isStable === true
+        })
+        console.log('stableAtLast: ', stableAtLast);
+        if (stableAtLast) break
     }
    
     return centroids
 }
 
-kMeansClustering(1)
+kMeansClustering(10)
 
 
 

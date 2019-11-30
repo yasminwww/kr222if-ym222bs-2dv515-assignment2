@@ -18,7 +18,7 @@ class Centroid {
         this.wordCount[index] = value
     }
     isSame(index) {
-        return this.assignments[index] === this.previous[index]
+        return this.assignments[index].blogName === this.previous[index].blogName
     }
 }
 
