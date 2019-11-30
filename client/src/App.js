@@ -9,11 +9,11 @@ function App() {
   return (
     <div className='container'>
       <BrowserRouter>
+        <Links />
         <Switch>
           <Route path='/kmeans' exact component={Kmean} />
           <Route path='/hierarchy' exact component={Hierarchy} />
         </Switch>
-        <Links />
       </BrowserRouter>
     </div>
   )

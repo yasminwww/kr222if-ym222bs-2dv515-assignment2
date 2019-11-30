@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 
 app.get('/kmeans/:clusters', (req, res) => {
     try {
-        const userCluster = Number(req.params.clusters)
+        const userCluster = req.params.clusters
         const result = kMeans(userCluster)
         res.json(result)
     } catch (error) {

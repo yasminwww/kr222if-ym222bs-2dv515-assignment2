@@ -129,7 +129,7 @@ function v(n){
 function buildTree(clust,labels,n){
 	var space = v(n).join('')
 	if(clust.id < 0){//indicate a group
-        arrBlog.push(space+'-')
+        arrBlog.push(space+'\\')
 	}
 	else{
         arrBlog.push(space+labels[clust.id]) // child

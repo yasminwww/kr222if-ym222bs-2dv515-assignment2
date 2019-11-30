@@ -27,7 +27,7 @@ const kMeansClustering = (k, userChoice) => {
         }
         centroids.push(aCentroid)
     }
-    for (let i = 0; i < userChoice; i++) {
+    for (let i = 0; i < 20; i++) {
         centroids.forEach(c => {
            c.clearAssigny() 
         })
@@ -70,9 +70,5 @@ const compairCurrentAndPrevoius = (aCentroid) => {
 
     }
 }
-
-kMeansClustering(2, 20)
-
-
 
 module.exports = kMeansClustering
