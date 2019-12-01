@@ -89,7 +89,7 @@ const kMeansClustering = (k, userChoice) => {
     return centroids
 }
 
-kMeansClustering(3)
+// kMeansClustering(3)
 
 
 
