@@ -16,13 +16,15 @@ const wordRange = (index) => {
 }
 
 /**
- * Ass = assignment
  * @param {object} aCentroid
  */
 const compairCurrentAndPrevoius = (aCentroid) => {
     let itsTrue = false
     for (let i = 0; i < aCentroid.assignments.length; i++) {
         itsTrue = aCentroid.isSame(i)
+        if (itsTrue === false) {
+            return false
+        }
     }
     return itsTrue
 }
@@ -40,7 +42,7 @@ const kMeansClustering = (k, userChoice) => {
         }
         centroids.push(aCentroid)
     }
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 20; i++) {
         centroids.forEach(c => {
             c.clearAssigny() 
         })
@@ -66,23 +68,28 @@ const kMeansClustering = (k, userChoice) => {
                 })
             }
         })
-        const centroidsStability = centroids.map(centroid => {
-            if(centroid.assignments.length === centroid.previous.length) {
-                return compairCurrentAndPrevoius(centroid)
-            } 
-            return false
-        })
-        const stableAtLast = centroidsStability.every(isStable => {
-            return isStable === true
-        })
-        console.log('stableAtLast: ', stableAtLast);
-        if (stableAtLast) break
+        /**
+         * when every centroid have same amount of blogs in both assignment and previous, iterate every index of the blog (compareCurrentAndPrevious)
+         */
+        // const isStable = centroids.every(centroid => {
+        //     if (centroid.assignments.length === centroid.previous.length) { // varför blir denhär aldrig sant ibland?
+        // 
+        //         console.log('compairCurrentAndPrevoius(centroid): ', compairCurrentAndPrevoius(centroid));
+        //         return compairCurrentAndPrevoius(centroid)
+        //     } else {
+        //         return false;
+        //     }
+        // })
+        // console.log('isStable: ', isStable);
+        // if (isStable) {
+        //     break
+        // }
     }
    
     return centroids
 }
 
-kMeansClustering(10)
+kMeansClustering(3)
 
 
 
