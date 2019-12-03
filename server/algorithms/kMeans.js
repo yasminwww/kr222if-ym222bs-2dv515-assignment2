@@ -42,6 +42,7 @@ const kMeansClustering = (k, userChoice) => {
         }
         centroids.push(aCentroid)
     }
+
     for (let i = 0; i < 20; i++) {
         centroids.forEach(c => {
             c.clearAssigny() 

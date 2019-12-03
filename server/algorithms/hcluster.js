@@ -63,6 +63,7 @@ const hierchyBuilder = () => {
         let clusterArray = []
         let currentClustID = -1
         let blogsNames = []
+        
         /**
          * Clusterify blogs
          */
@@ -79,25 +80,23 @@ const hierchyBuilder = () => {
             let distances = {}
             let pair = [0, 1]
             let closest =  pearson(clusterArray[0].vec, clusterArray[1].vec)
-
             
-            for (let i = 0; i < closest.length; i++) {
-                for (let j = 0; j < array.length; j++) {
+            for (let i = 0; i < clusterArray.length; i++) {
+                for (let j=i+1; j < clusterArray.length; j++) {
                     let currentCluster = clusterArray[i].id + ',' + clusterArray[j].id
                     if (!(currentCluster in distances)) {
-                        distances[ clusterArray[i].id + ',' + clusterArray[j].id ] = pearson(clusterArray[i].vec, clusterArray[j].vec)
+                        distances[clusterArray[i].id + ',' + clusterArray[j].id ] = pearson(clusterArray[i].vec, clusterArray[j].vec)
                     }
-                    let newDistances = distances[i].id + ',' + clusterArray[j].id
+                    let newDistances = distances[clusterArray[i].id + ',' + clusterArray[j].id]
                     if (newDistances < closest) {
-                        closest = d	
+                        closest = newDistances
 					    pair[0] =i
 					    pair[1] =j
                     }
                 }
             }
             
-		let mergevec = mergeNodes(clusterArray[pair[0]].vec,clusterArray[pair[1]].vec)
-
+        let mergevec = mergeNodes(clusterArray[pair[0]].vec,clusterArray[pair[1]].vec)
 
         let newcluster = new Cluster({
             vec:mergevec,
@@ -129,7 +128,7 @@ function v(n){
 function buildTree(clust,labels,n){
 	var space = v(n).join('')
 	if(clust.id < 0){//indicate a group
-        arrBlog.push(space+'\\')
+        arrBlog.push(space+'-')
 	}
 	else{
         arrBlog.push(space+labels[clust.id]) // child
@@ -142,10 +141,10 @@ function buildTree(clust,labels,n){
 	}
 	if(clust['right'] !=null){
 		buildTree(clust['right'],labels,n+1);
-		
     }
     return arrBlog
 }
+
 
 module.exports.buildTree = buildTree
 module.exports.clusterifyBlogs = clusterifyBlogs
